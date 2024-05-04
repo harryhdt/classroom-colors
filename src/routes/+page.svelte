@@ -64,6 +64,7 @@
 							onmouseenter={enabledDrag}
 							onmouseleave={disabledDrag}
 							ontouchstart={enabledDrag}
+							ontouchend={disabledDrag}
 							onkeydown={handleKeyDown}
 						>
 							<svg

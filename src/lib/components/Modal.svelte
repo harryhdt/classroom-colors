@@ -34,7 +34,7 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div
 		transition:fade={{ duration: 150 }}
-		class="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/25 backdrop-blur-sm"
+		class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:items-start bg-black/25 backdrop-blur-sm"
 		onclick={(e) => close(e)}
 	>
 		{#if slot}
