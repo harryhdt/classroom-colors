@@ -20,6 +20,9 @@
 			animation: 300,
 			handle: '.handle'
 		});
+		return () => {
+			sortable.destroy();
+		};
 	});
 </script>
 
