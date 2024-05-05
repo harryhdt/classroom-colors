@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+	max-height: 100dvh;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
 @keyframes goyang {
 	0% {
 		transform: rotate(0);
