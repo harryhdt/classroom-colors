@@ -37,9 +37,9 @@
 		onSort={() => $ClassroomStore.save()}
 		class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 px-4 py-3 gap-2.5"
 	>
-		{#snippet itemElm(dragDisabled, flipDurationMs, enabledDrag, disabledDrag, handleKeyDown)}
+		{#snippet itemElm()}
 			{#each $ClassroomStore.data || [] as classroom (classroom.id)}
-				<div animate:flip={{ duration: flipDurationMs }} class="relative overflow-hidden">
+				<div class="relative overflow-hidden">
 					<div
 						class="px-4 py-3 rounded-t"
 						style="background: color-mix( in oklab, {classroom.color} {$currentTheme ===
@@ -56,16 +56,7 @@
 					<div
 						class="flex items-center px-4 py-2.5 border border-t-0 border-base-300 rounded-b bg-base-200/50"
 					>
-						<div
-							aria-label="drag-handle"
-							class="handle hover:text-base-content/75 text-base-content/50"
-							style={dragDisabled ? 'cursor: grab' : 'cursor: grabbing'}
-							onmouseenter={enabledDrag}
-							onmouseleave={disabledDrag}
-							ontouchstartcapture={enabledDrag}
-							ontouchend={disabledDrag}
-							onkeydown={handleKeyDown}
-						>
+						<div class="handle hover:text-base-content/75 text-base-content/50 cursor-grab">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="size-6"
