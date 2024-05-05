@@ -39,7 +39,7 @@
 	>
 		{#snippet itemElm()}
 			{#each $ClassroomStore.data || [] as classroom (classroom.id)}
-				<div class="relative overflow-hidden">
+				<div class="relative overflow-hidden rounded">
 					<div
 						class="px-4 py-3 rounded-t"
 						style="background: color-mix( in oklab, {classroom.color} {$currentTheme ===

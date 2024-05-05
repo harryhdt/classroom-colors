@@ -29,7 +29,8 @@
 
 <style>
 	:global(.sortable-ghost) {
-		animation: goyang 1s linear infinite;
-		outline: 3px dashed theme('colors.primary');
+		animation: goyang 0.75s linear infinite;
+		outline: 3px solid theme('colors.yellow.500');
+		outline-offset: 2px;
 	}
 </style>
