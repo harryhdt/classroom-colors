@@ -56,20 +56,19 @@
 					<div
 						class="flex items-center px-4 py-2.5 border border-t-0 border-base-300 rounded-b bg-base-200/50"
 					>
-						<button
-							tabindex={dragDisabled ? 0 : -1}
+						<div
 							aria-label="drag-handle"
 							class="handle hover:text-base-content/75 text-base-content/50"
 							style={dragDisabled ? 'cursor: grab' : 'cursor: grabbing'}
 							onmouseenter={enabledDrag}
 							onmouseleave={disabledDrag}
-							ontouchstart={enabledDrag}
+							ontouchstartcapture={enabledDrag}
 							ontouchend={disabledDrag}
 							onkeydown={handleKeyDown}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="size-5"
+								class="size-6"
 								width="1em"
 								height="1em"
 								viewBox="0 0 24 24"
@@ -82,7 +81,7 @@
 									d="M18 14a1 1 0 1 0 0 2a1 1 0 0 0 0-2m-6 0a1 1 0 1 0 0 2a1 1 0 0 0 0-2m-6 0a1 1 0 1 0 0 2a1 1 0 0 0 0-2m12-6a1 1 0 1 0 0 2a1 1 0 0 0 0-2m-6 0a1 1 0 1 0 0 2a1 1 0 0 0 0-2M6 8a1 1 0 1 0 0 2a1 1 0 0 0 0-2"
 								/></svg
 							>
-						</button>
+						</div>
 						<div class="flex items-center justify-end ml-auto gap-x-2">
 							<button
 								onclick={() => $ClassroomStore.openForm('edit', classroom)}
@@ -129,37 +128,41 @@
 	<p class="px-4 py-3 text-sm text-error">Empty classroom</p>
 {/if}
 
-<Modal show={$page.state.showClassroomForm}>
-	{#snippet slot(close)}
-		<div
-			transition:fly|global={{ y: 16, duration: 100 }}
-			class="w-full max-w-lg overflow-hidden rounded-lg bg-base-100"
-		>
-			<Form {close} />
-		</div>
-	{/snippet}
-</Modal>
+{#if $page.state.showClassroomForm}
+	<Modal>
+		{#snippet slot(close)}
+			<div
+				transition:fly|global={{ y: 16, duration: 100 }}
+				class="w-full max-w-lg border rounded bg-base-100 border-base-300 overflow-auto max-h-[calc(100dvh-32px)]"
+			>
+				<Form {close} />
+			</div>
+		{/snippet}
+	</Modal>
+{/if}
 
-<Modal show={$page.state.showConfirmDeleteClassroom}>
-	{#snippet slot(close)}
-		<div
-			transition:fly|global={{ y: 16, duration: 100 }}
-			class="w-full max-w-lg overflow-hidden rounded-lg bg-base-100"
-		>
-			<Confirm
-				{close}
-				description="Are you sure, you want delete room {selectedClassroom?.name} ?"
-				confirm={{
-					class: 'btn-error',
-					action() {
-						if (selectedClassroom) {
-							$ClassroomStore.remove(selectedClassroom);
-							selectedClassroom = undefined;
-							close();
+{#if $page.state.showConfirmDeleteClassroom}
+	<Modal>
+		{#snippet slot(close)}
+			<div
+				transition:fly|global={{ y: 16, duration: 100 }}
+				class="w-full max-w-lg border rounded bg-base-100 border-base-300 overflow-auto max-h-[calc(100dvh-32px)]"
+			>
+				<Confirm
+					{close}
+					description="Are you sure, you want delete room {selectedClassroom?.name} ?"
+					confirm={{
+						class: 'btn-error',
+						action() {
+							if (selectedClassroom) {
+								$ClassroomStore.remove(selectedClassroom);
+								selectedClassroom = undefined;
+								close();
+							}
 						}
-					}
-				}}
-			/>
-		</div>
-	{/snippet}
-</Modal>
+					}}
+				/>
+			</div>
+		{/snippet}
+	</Modal>
+{/if}

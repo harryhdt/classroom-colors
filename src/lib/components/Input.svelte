@@ -23,7 +23,7 @@
 			</p>
 		</div>
 	{/if}
-	<input class="input input-bordered {props.class}" type="text" {...props} bind:value />
+	<input class="input input-bordered w-full {props.class}" type="text" {...props} bind:value />
 	{#if error}
 		<p class="text-sm text-error">{error}</p>
 	{/if}
