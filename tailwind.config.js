@@ -11,7 +11,7 @@ export default {
 		themes: [
 			{
 				easyLook: {
-					primary: '#1A56DB',
+					primary: '#2360e8',
 					'primary-content': '#fff',
 					secondary: '#6C2BD9',
 					'secondary-content': '#fff',
